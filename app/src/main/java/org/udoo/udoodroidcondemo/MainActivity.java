@@ -57,17 +57,7 @@ public class MainActivity extends Activity {
 	SpeechRecognizer mSpeechRecognizer;
 	
 	// speech key
-	private ArrayList<String> chisei_strings = new ArrayList<String>(Arrays.asList( "chi sei", "nome", "chiami", "chi", "ci sei", "sei", "ti sei"));
-	private ArrayList<String> successo_strings = new ArrayList<String>(Arrays.asList( "successo","professore", "al professore"));
-	private ArrayList<String> qualcosa_strings = new ArrayList<String>(Arrays.asList( "qualcosa","visto", "hai visto qualcosa"));
-	private ArrayList<String> sentito_strings = new ArrayList<String>(Arrays.asList( "sentito","hai visto qualcosa"));
-	private ArrayList<String> riconosciuto_strings = new ArrayList<String>(Arrays.asList( "riconosciuto", "voci", "riconosciute"));
-	private ArrayList<String> ucciso_strings = new ArrayList<String>(Arrays.asList( "perché", "ucciso", "hanno", "perchè lo hanno ucciso", "ammazzato"));
-	private ArrayList<String> ricerche_strings = new ArrayList<String>(Arrays.asList( "quali", "tipo", "ricerche", "faceva", "tipo di ricerche"));
-	private ArrayList<String> posizione_strings = new ArrayList<String>(Arrays.asList( "posizione", "corpo", "posizione del corpo", "stava"));
-	private ArrayList<String> password_strings = new ArrayList<String>(Arrays.asList( "password"));
-
-	private ArrayList<String> goodboy_strings = new ArrayList<String>(Arrays.asList("good boy", 
+	private ArrayList<String> goodboy_strings = new ArrayList<String>(Arrays.asList("good boy",
 			"well done", "very good", "good work", "good guy", "great"));
 	private ArrayList<String> badboy_strings = new ArrayList<String>(Arrays.asList("vaffanculo", "bad boy",
 			"fuck you", "bad guy", "cattivo", "brutto", "merda", "culo"));
@@ -153,16 +143,6 @@ public class MainActivity extends Activity {
 			}
 		});
 
-		allwords.addAll(chisei_strings);
-		allwords.addAll(successo_strings);
-		allwords.addAll(qualcosa_strings);
-		allwords.addAll(sentito_strings);
-		allwords.addAll(riconosciuto_strings);
-		allwords.addAll(ucciso_strings);
-		allwords.addAll(ricerche_strings);
-		allwords.addAll(posizione_strings);
-		allwords.addAll(password_strings);
-
 	    allwords.addAll(hello_strings);
         allwords.addAll(hi_strings);
 //	    allwords.addAll(name_strings);
@@ -213,7 +193,7 @@ public class MainActivity extends Activity {
 	                            installIntent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
 	                            startActivity(installIntent);          
 	                    } else {
-	                    	tts.speak("Ciao Droidcon", TextToSpeech.QUEUE_FLUSH, null);
+	                    	tts.speak("Ciao Campus Party...", TextToSpeech.QUEUE_FLUSH, null);
 	                    }
 	         
 	                } else {
@@ -280,15 +260,6 @@ public class MainActivity extends Activity {
         		
 //        		if (hi_strings.contains(stringFounded)) tts.speak("Hi", TextToSpeech.QUEUE_FLUSH, null);
 				if (hi_strings.contains(stringFounded)) tts.speak("Ciao", TextToSpeech.QUEUE_FLUSH, null);
-				else if (chisei_strings.contains(stringFounded)) tts.speak("Sono Mario, assistente del professor Lanning", TextToSpeech.QUEUE_FLUSH, null);
-				else if (successo_strings.contains(stringFounded)) sendsuccesso();
-				else if (qualcosa_strings.contains(stringFounded)) tts.speak("Due uomini.    Riconoscimento facciale.  volto del professor Lanning ", TextToSpeech.QUEUE_FLUSH, null);
-				else if (sentito_strings.contains(stringFounded)) tts.speak("Devi assumerti la responsabilità delle tue scelte", TextToSpeech.QUEUE_FLUSH, null);
-				else if (riconosciuto_strings.contains(stringFounded)) tts.speak("Riconoscimento vocale: professor Lanning", TextToSpeech.QUEUE_FLUSH, null);
-				else if (ucciso_strings.contains(stringFounded)) tts.speak("Il professore faceva ricerche importanti", TextToSpeech.QUEUE_FLUSH, null);
-				else if (ricerche_strings.contains(stringFounded)) infoprotettaCase();
-				else if (posizione_strings.contains(stringFounded)) tts.speak("Supino, con il braccio destro sopra la testa", TextToSpeech.QUEUE_FLUSH, null);
-				else if (password_strings.contains(stringFounded)) tts.speak("Si trova nel video. Indizio: il collisore di adroni ne ricrea le condizioni", TextToSpeech.QUEUE_FLUSH, null);
         		else if (hello_strings.contains(stringFounded)) sendHello();
 //        		else if (name_strings.contains(stringFounded)) speakCase("I'm Mario, A Robot Made with the you do board.");
         		else if (comefrom_strings.contains(stringFounded)) tts.speak("I come from Siena in Italy", TextToSpeech.QUEUE_FLUSH, null);
@@ -326,14 +297,6 @@ public class MainActivity extends Activity {
 		returnToNormalState(5000);
     }
 
-	private void sendsuccesso() {
-		Log.i(TAG, "hello case");
-		setNewFace(R.drawable.sad);
-		tts.speak("Il professor Lanning è stato ucciso, colpito alle spalle ", TextToSpeech.QUEUE_FLUSH, null);
-		mAdkManager.writeSerial(HELLO_SENDSTRING);
-		returnToNormalState(5000);
-	}
-    
     private void sendGoodby() {
     	Log.i(TAG, "hello case");  
     	setNewFace(R.drawable.happy);
@@ -350,14 +313,6 @@ public class MainActivity extends Activity {
 		returnToNormalState(5000);
 	}
 
-	private void infoprotettaCase() {
-		Log.i(TAG, "good case");
-		setNewFace(R.drawable.sad);
-		tts.speak("Informazione protetta", TextToSpeech.QUEUE_FLUSH, null);
-//		mAdkManager.writeSerial(BADBOY_SENDSTRING);
-		returnToNormalState(5000);
-	}
-    
     private void sendBadCase() {
     	Log.i(TAG, "bad case");  
     	setNewFace(R.drawable.sad);
@@ -481,7 +436,7 @@ public class MainActivity extends Activity {
 		        
 		        if (!searchCommands(resultsArray.get(0))) {
 //					tts.speak("Sorry, but I didn't understand", TextToSpeech.QUEUE_FLUSH, null);
-		        	tts.speak("Le mie risposte sono limitate. Devi farmi le domande giuste.", TextToSpeech.QUEUE_FLUSH, null);
+					tts.speak("Scusa, ma non ho capito.", TextToSpeech.QUEUE_FLUSH, null);
 		        	//showToastMessage("Sentence is not recognized");
 		        }
 		        
