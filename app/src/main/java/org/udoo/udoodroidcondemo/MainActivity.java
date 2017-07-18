@@ -58,11 +58,11 @@ public class MainActivity extends Activity {
 	
 	// speech key
 	private ArrayList<String> goodboy_strings = new ArrayList<String>(Arrays.asList("good boy",
-			"well done", "very good", "good work", "good guy", "great"));
+			"well done", "very good", "good work", "good guy", "great", "bravo", "grande", "idolo", "fantastico"));
 	private ArrayList<String> badboy_strings = new ArrayList<String>(Arrays.asList("vaffanculo", "bad boy",
 			"fuck you", "bad guy", "cattivo", "brutto", "merda", "culo"));
 	private ArrayList<String> cuteboy_strings = new ArrayList<String>(Arrays.asList("cute boy", "cute",
-			"so cute", "nice"));
+			"so cute", "nice", "carino"));
 	private ArrayList<String> forward_strings = new ArrayList<String>(Arrays.asList("go forward",
 			"go straight on", "forward", "avanti", "diritto", "dritto"));
 	private ArrayList<String> backward_strings = new ArrayList<String>(Arrays.asList("go backward",
@@ -74,13 +74,15 @@ public class MainActivity extends Activity {
 	private ArrayList<String> pizza_strings = new ArrayList<String>(Arrays.asList("pizza", "like pizza",
 			"do you like pizza"));
 	private ArrayList<String> hi_strings = new ArrayList<String>(Arrays.asList("ciao" , "saluti"));
-//	private ArrayList<String> name_strings = new ArrayList<String>(Arrays.asList("name", "your name",
-//			"who are you", "what's your name", "chi sei", "nome", "chiami", "chi", "ci sei", "sei", "ti sei"));
+	private ArrayList<String> name_strings = new ArrayList<String>(Arrays.asList("name", "your name",
+			"who are you", "what's your name", "chi", "chi sei", "nome", "chiami", "chi", "ci sei", "sei", "ti sei"));
 	private ArrayList<String> hello_strings = new ArrayList<String>(Arrays.asList( "hello", "ciao", "saluti", "saluta"));
 	private ArrayList<String> comefrom_strings = new ArrayList<String>(Arrays.asList("come from", " are you from"));
-	private ArrayList<String> goodbye_strings = new ArrayList<String>(Arrays.asList("goodbye")); 
+	private ArrayList<String> goodbye_strings = new ArrayList<String>(Arrays.asList("goodbye", "arrivederci"));
 	private ArrayList<String> moonwalk_strings = new ArrayList<String>(Arrays.asList("moonwalk", "moon walk",
 			"Michael Jackson", "star", "stop", "dollar", "stock"));
+	private ArrayList<String> campus_strings = new ArrayList<String>(Arrays.asList("Campus", "party", "parti", "tenda", "campo", "campu"));
+	private ArrayList<String> bari_strings = new ArrayList<String>(Arrays.asList("turisti", "anziani", "bari", "bragiuole", "braciuole"));
 
 	private ArrayList<String> allwords = new ArrayList<String>();
 	
@@ -145,7 +147,7 @@ public class MainActivity extends Activity {
 
 	    allwords.addAll(hello_strings);
         allwords.addAll(hi_strings);
-//	    allwords.addAll(name_strings);
+	    allwords.addAll(name_strings);
 	    allwords.addAll(goodboy_strings);
         allwords.addAll(badboy_strings);
         allwords.addAll(cuteboy_strings);
@@ -157,6 +159,8 @@ public class MainActivity extends Activity {
 		allwords.addAll(pizza_strings);
 		allwords.addAll(comefrom_strings);
 		allwords.addAll(goodbye_strings);
+		allwords.addAll(campus_strings);
+		allwords.addAll(bari_strings);
 
         animationFadeIn = AnimationUtils.loadAnimation(this, R.anim.fadein);
         animationFadeOut = AnimationUtils.loadAnimation(this, R.anim.fadeout);
@@ -193,7 +197,7 @@ public class MainActivity extends Activity {
 	                            installIntent.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
 	                            startActivity(installIntent);          
 	                    } else {
-	                    	tts.speak("Ciao Campus Party...", TextToSpeech.QUEUE_FLUSH, null);
+	                    	tts.speak("Ciao Campus Party", TextToSpeech.QUEUE_FLUSH, null);
 	                    }
 	         
 	                } else {
@@ -259,10 +263,10 @@ public class MainActivity extends Activity {
         		found = true;
         		
 //        		if (hi_strings.contains(stringFounded)) tts.speak("Hi", TextToSpeech.QUEUE_FLUSH, null);
-				if (hi_strings.contains(stringFounded)) tts.speak("Ciao", TextToSpeech.QUEUE_FLUSH, null);
+				if (hi_strings.contains(stringFounded)) tts.speak("Ciao Campus Parti", TextToSpeech.QUEUE_FLUSH, null);
         		else if (hello_strings.contains(stringFounded)) sendHello();
-//        		else if (name_strings.contains(stringFounded)) speakCase("I'm Mario, A Robot Made with the you do board.");
-        		else if (comefrom_strings.contains(stringFounded)) tts.speak("I come from Siena in Italy", TextToSpeech.QUEUE_FLUSH, null);
+        		else if (name_strings.contains(stringFounded)) speakCase("Sono Mario, un robot fatto con la iudù  per il Campus Parti");
+        		else if (comefrom_strings.contains(stringFounded)) tts.speak("Io vengo dal laboratorio di iudù  ", TextToSpeech.QUEUE_FLUSH, null);
         		else if (goodboy_strings.contains(stringFounded)) sendGoodCase();
     	        else if (badboy_strings.contains(stringFounded)) sendBadCase();
     	        else if (cuteboy_strings.contains(stringFounded)) sendCuteCase();
@@ -270,10 +274,12 @@ public class MainActivity extends Activity {
     	        else if (backward_strings.contains(stringFounded)) mAdkManager.writeSerial(BACK_SENDSTRING);
     	        else if (right_strings.contains(stringFounded)) mAdkManager.writeSerial(RIGHT_SENDSTRING);
     	        else if (left_strings.contains(stringFounded)) mAdkManager.writeSerial(LEFT_SENDSTRING);
-//    	        else if (moonwalk_strings.contains(stringFounded)) moonWalkCase();
+    	        else if (moonwalk_strings.contains(stringFounded)) moonWalkCase();
     	        else if (pizza_strings.contains(stringFounded))
-					tts.speak("Yes, I love pizza, but unfortunately I cannot eat it.", TextToSpeech.QUEUE_FLUSH, null);
+					tts.speak("Si mi piace la pizza, ma non posso mangiarla", TextToSpeech.QUEUE_FLUSH, null);
     	        else if (goodbye_strings.contains(stringFounded)) sendGoodby();
+				else if (goodbye_strings.contains(stringFounded)) tts.speak("Campus Parti", TextToSpeech.QUEUE_FLUSH, null);
+				else if (bari_strings.contains(stringFounded)) tts.speak("Le braciuole, con le orecchiette, con il ragù. Li friccio tutti. Noi sim anziaaaaaaaaaa", TextToSpeech.QUEUE_FLUSH, null);
 
 				break;
 			}
@@ -292,7 +298,7 @@ public class MainActivity extends Activity {
     private void sendHello() {
     	Log.i(TAG, "hello case");  
     	setNewFace(R.drawable.happy);
-    	tts.speak("Ciao Droidcon", TextToSpeech.QUEUE_FLUSH, null);
+    	tts.speak("Ciao Campus parti", TextToSpeech.QUEUE_FLUSH, null);
 		mAdkManager.writeSerial(HELLO_SENDSTRING);
 		returnToNormalState(5000);
     }
@@ -300,7 +306,8 @@ public class MainActivity extends Activity {
     private void sendGoodby() {
     	Log.i(TAG, "hello case");  
     	setNewFace(R.drawable.happy);
-    	tts.speak("Goodbye and thank you", TextToSpeech.QUEUE_FLUSH, null);
+    	//tts.speak("Goodbye and thank you", TextToSpeech.QUEUE_FLUSH, null);
+		tts.speak("Ciao e grazie", TextToSpeech.QUEUE_FLUSH, null);
 		mAdkManager.writeSerial(HELLO_SENDSTRING);
 		returnToNormalState(5000);
     }
